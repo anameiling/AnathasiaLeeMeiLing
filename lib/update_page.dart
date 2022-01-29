@@ -29,27 +29,27 @@ class _UpdatePageState extends State<UpdatePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Update Page'),
+        title: const Text('Update Page'),
       ),
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             TextField(
               controller: user_idController,
-              decoration: InputDecoration(hintText: 'user_id'),
+              decoration: const InputDecoration(hintText: 'user_id'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               controller: titleController,
-              decoration: InputDecoration(hintText: 'title'),
+              decoration: const InputDecoration(hintText: 'title'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               controller: bodyController,
-              decoration: InputDecoration(hintText: 'body'),
+              decoration: const InputDecoration(hintText: 'body'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ElevatedButton(
                 onPressed: () async {
                   bool response = await repository.updatePage(
@@ -64,7 +64,7 @@ class _UpdatePageState extends State<UpdatePage> {
                     throw Exception('Failed to update data');
                   }
                 },
-                child: Text('Update')),
+                child: const Text('Update')),
           ],
         ),
       ),

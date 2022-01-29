@@ -14,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: const HomePage(),
       debugShowCheckedModeBanner: false,
       routes: {
-        'home': (context) => HomePage(),
-        'create': (context) => CreatePage(),
-        'update': (context) => UpdatePage(),
+        'home': (context) => const HomePage(),
+        'create': (context) => const CreatePage(),
+        'update': (context) => const UpdatePage(),
       },
     );
   }
@@ -55,6 +55,30 @@ class _HomePageState extends State<HomePage> {
         title: const Text('CRUD Flutter'),
       ),
       body: ListView.builder(
+        //   itemCount: 2,
+        //   itemBuilder: (context, index) {
+        //     return ListTile(
+        //       leading: Container(
+        //         width: 60,
+        //         height: 60,
+        //         decoration: BoxDecoration(
+        //           shape: BoxShape.circle,
+        //           image: DecorationImage(
+        //             image: AssetImage('assets/profile.png'),
+        //             fit: BoxFit.cover,
+        //           ),
+        //         ),
+        //       ),
+        //       title: Text('Anathasia Lee'),
+        //       subtitle: Text(
+        //         'Hello World!',
+        //         maxLines: 1,
+        //         overflow: TextOverflow.ellipsis,
+        //       ),
+        //     );
+        //   },
+        // ),
+
         itemCount: listPosts.length,
         itemBuilder: (context, index) {
           Posts posts = listPosts[index];
@@ -73,16 +97,16 @@ class _HomePageState extends State<HomePage> {
               background: Container(
                 color: Colors.red,
                 alignment: Alignment.centerRight,
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                child: Icon(Icons.delete),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: const Icon(Icons.delete),
               ),
               confirmDismiss: (direction) {
                 return showDialog(
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text('Delete Data'),
-                      content: Text('Are you sure to delete data?'),
+                      title: const Text('Delete Data'),
+                      content: const Text('Are you sure to delete data?'),
                       actions: [
                         TextButton(
                             onPressed: () async {
@@ -95,12 +119,12 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.pop(context, false);
                               }
                             },
-                            child: Text('Yes')),
+                            child: const Text('Yes')),
                         TextButton(
                             onPressed: () {
                               Navigator.pop(context, false);
                             },
-                            child: Text('No')),
+                            child: const Text('No')),
                       ],
                     );
                   },
@@ -132,7 +156,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.popAndPushNamed(context, 'create');
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

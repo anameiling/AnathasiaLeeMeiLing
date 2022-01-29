@@ -19,27 +19,27 @@ class _CreatePageState extends State<CreatePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Create Page'),
+        title: const Text('Create Page'),
       ),
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             TextField(
               controller: user_idController,
-              decoration: InputDecoration(hintText: 'user_id'),
+              decoration: const InputDecoration(hintText: 'user_id'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               controller: titleController,
-              decoration: InputDecoration(hintText: 'title'),
+              decoration: const InputDecoration(hintText: 'title'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               controller: bodyController,
-              decoration: InputDecoration(hintText: 'body'),
+              decoration: const InputDecoration(hintText: 'body'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ElevatedButton(
                 onPressed: () async {
                   bool response = await repository.createData(
@@ -53,7 +53,7 @@ class _CreatePageState extends State<CreatePage> {
                     throw Exception('Failed to create data');
                   }
                 },
-                child: Text('Submit')),
+                child: const Text('Submit')),
           ],
         ),
       ),

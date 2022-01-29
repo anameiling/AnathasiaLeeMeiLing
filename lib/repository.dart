@@ -5,15 +5,16 @@ import 'package:front_end_assessment_anathasia/posts.dart';
 import 'package:http/http.dart' as http;
 
 class Repository {
-  String uri = 'https://gorest.co.in/public/v1/posts';
+  String url =
+      'https://gorest.co.in/public/v1/posts?access-token=acaaf4323718f087063c9532a4212d32ca1e26f8795df8d2248e50d6d418fec7';
 
   Future getData() async {
     try {
       final response = await http.get(
-        Uri.parse(uri),
+        Uri.parse(url),
         headers: {
-          HttpHeaders.authorizationHeader:
-              'Basic acaaf4323718f087063c9532a4212d32ca1e26f8795df8d2248e50d6d418fec7',
+          HttpHeaders.acceptHeader: "application/json",
+          HttpHeaders.contentTypeHeader: "application/json",
         },
       );
 
@@ -31,8 +32,16 @@ class Repository {
 
   Future createData(String user_id, String title, String body) async {
     try {
-      final response = await http.post(Uri.parse(uri),
-          body: {'user_id': user_id, 'title': title, 'body': body});
+      final response = await http.post(Uri.parse(url), headers: {
+        HttpHeaders.acceptHeader: "application/json",
+        HttpHeaders.contentTypeHeader: "application/json",
+        HttpHeaders.authorizationHeader:
+            "Bearer acaaf4323718f087063c9532a4212d32ca1e26f8795df8d2248e50d6d418fec7",
+      }, body: {
+        'user_id': user_id,
+        'title': title,
+        'body': body
+      });
 
       if (response.statusCode == 201) {
         return true;
@@ -47,7 +56,12 @@ class Repository {
   Future updatePage(
       String id, String user_id, String title, String body) async {
     try {
-      final response = await http.put(Uri.parse('$uri/$id'), body: {
+      final response = await http.put(Uri.parse('$url/$id'), headers: {
+        HttpHeaders.acceptHeader: "application/json",
+        HttpHeaders.contentTypeHeader: "application/json",
+        HttpHeaders.authorizationHeader:
+            "Bearer acaaf4323718f087063c9532a4212d32ca1e26f8795df8d2248e50d6d418fec7",
+      }, body: {
         'user_id': user_id,
         'title': title,
         'body': body,
@@ -65,7 +79,15 @@ class Repository {
 
   Future deleteData(String id) async {
     try {
-      final response = await http.delete(Uri.parse('$uri/$id'));
+      final response = await http.delete(
+        Uri.parse('$url/$id'),
+        headers: {
+          HttpHeaders.acceptHeader: "application/json",
+          HttpHeaders.contentTypeHeader: "application/json",
+          HttpHeaders.authorizationHeader:
+              "Bearer acaaf4323718f087063c9532a4212d32ca1e26f8795df8d2248e50d6d418fec7",
+        },
+      );
 
       if (response.statusCode == 200) {
         return true;
